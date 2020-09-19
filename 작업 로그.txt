@@ -1,0 +1,69 @@
+2020-09-15
+	CMN_Layout.cs 생성
+		ControlLayout Class
+			MakeCurvedBorder(Control ctrl, int curvedAmount_X, int curvedAmount_Y)
+				Control의 테두리를 둥글게 만드는 함수
+	FRM_KeyBoardUI
+	FRM_NumPadUI
+		배경 이미지 할당
+		버튼에 이미지를 할당
+		Text 필드를 이용시 이미지와 Text가 겹쳐 보기 안좋으므로 Tag 필드를 이용하도록 수정
+		(Right Shift 미완료, Exit 버튼 추가 필요)
+
+2020-09-16
+	FRM_KeyBoardUI
+	FRM_NumPadUI
+		Right Shift 추가 완료
+		Exit 추가 완료
+	CMN_Layout
+		ControlLayout Class
+			Control_Sizing, Control_Positioning 함수 생성
+			(폼 화면의 비율에 맞게 컨트롤의 크기, 위치값을 조절하는 함수)
+		FormLayout Class
+			MakeCurvedBorder(Form frm, int curvedAmount_X, int curvedAmount_Y)
+				Form의 테두리를 둥글게 만드는 함수
+	FRM_MessageBox 생성
+		커스텀 MessageBox 사용
+		(Normal 모드와 OkCancel 모드 2개를 구현함)
+		화면 크기에 맞춘 크기, 위치 조절 완료
+	FRM_Login
+		1차적인 이미지 적용 완료
+		화면 크기에 맞춘 크기, 위치 조절 완료
+
+	FRM_Process도 화면에 맞춰 크기 조절을 할 수 있도록 수정해야함
+	(Main의 경우 Mdi Container의 크기 수정을 위한 함수를 FormLayout Class에 추가해야함)
+	(KeyBoard와 NumPad도 할 수 있으면 좋겠지만 노가다가 동반될 것임)
+
+2020-09-17
+	전체
+		속성으로 지정해둔 배경 이미지를 코드를 통해 할당하도록 변경함
+		(배경을 원하는대로 변경할 수 있게됨)
+	FRM_Main
+		화면에 맞춘 크기, 위치 조절 완료
+		ini파일을 통한 창 크기 조절 지원
+	FRM_Process
+		화면에 맞춘 크기, 위치 조절 완료
+		배경 이미지 할당
+		차트 추가
+		(품질 체크 항목별로 TabControl에 Tab을 생성해 각각 Chart로 표현하며 StripLine을 이용해 품질 경계 영역을 표시함)
+		(품질 범위를 넘어서면 탭 이름을 붉게 할 수 있도록 준비를 해둠 - 차트를 갱신할 때마다 모든 탭의 이름이 붉게 변하도록 한 상태)
+		(매 갱신마다 점을 전부 지우고 다시 그리는 식으로 일단 구현해 놓았지만 점을 하나 지우고 하나 새로 그리는 식의 구현을 하는게 목표)
+	CMN_Layout
+		FormLayout Class 삭제 및 ControlLayout Class에 병합
+		(Form도 Control의 일종이었음)
+	FRM_MessageBox
+		YesNo모드를 추가 구현
+		(Yes No버튼의 이미지는 할당을 안했으므로 해줘야함)
+2020-09-18
+	FRM_Process
+		차트
+			범위를 넘어서는 값에 대해서 노란 점으로 표시하고 해당하는 탭의 이름을 붉게 표시하도록 구현함
+			점을 전부 지우고 다시 그리는 모드(RefreshAll)와 점을 하나 지우고 하나 새로 그리는 모드(ReplaceOne)의 2가지로 구분했음
+				RefreshAll은 최초 1회만 실행되며, 그 후로는 ReplaceOne 모드로 계속 실행됨
+	CMN_DB_Connect
+		Search 함수를 수정해 리턴형을 Bool로 바꿔서 통신 성공 여부를 리턴하게 하고, 기존의 DataSet은 out 매개변수로 리턴받게 함
+	FRM_LogIn
+		CMN_DB_Connect의 수정된 Search함수를 이용해 로그인 실패 시 통신 오류로 인한 것인지, ID/PW를 잘못 입력한 것인지를 구분지어 MessageBox의 내용을 출력하게 하였음
+
+	+ 지윤이한테서 받은 파일 및 코드를 적절히 합쳐서 UI를 조정함
+

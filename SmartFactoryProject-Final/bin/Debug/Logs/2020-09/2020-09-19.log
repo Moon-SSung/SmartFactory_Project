@@ -1,0 +1,5 @@
+2020-09-19 17-40-40.546 : ★★★★★[Exception][DBConnect][Search]                        => 사용자 'sa'이(가) 로그인하지 못했습니다.
+
+Select * from TB_User
+                                     where User_ID = @ID and User_PW = @Password
+
